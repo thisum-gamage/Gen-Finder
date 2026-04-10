@@ -1,44 +1,50 @@
-def current_age(year):
-    Age = 2026 - year
+def current_age(birth_year):
+    Age = 2026 - birth_year
     return Age
 
 
-def hundred_year(year):
-    hundred_age = 100 + year
+def hundred_year(birth_year):
+    hundred_age = 100 + birth_year
     return hundred_age
 
 
-g1 = "Generation Alpha"
-g2 = "Generation Z"
-g3 = "Millennial"
-g4 = "Generation X"
-g5 = "Baby Boomer"
-g6 = "Silent Generation"
-g7 = "Greatest Generation"
+def get_generation(birth_year):
 
-birth_year = int(input("Enter your birth year : "))
+    if 2013 <= birth_year:
+        g = "Generation Alpha"
+    elif 1997 <= birth_year <= 2012:
+        g = "Generation Z"
+    elif 1981 <= birth_year <= 1996:
+        g = "Millennial"
+    elif 1965 <= birth_year <= 1980:
+        g = "Generation X"
+    elif 1946 <= birth_year <= 1964:
+        g = "Baby Boomer"
+    elif 1928 <= birth_year <= 1945:
+        g = "Silent Generation"
+    else:
+        g = "Greatest Generation"
+    return g
 
-if 2013 <= birth_year:
-    print("You are a", g1, "Person.")
+print("--- 🎂 Age & Generation Finder ---")
 
-elif 1997 <= birth_year <= 2012:
-    print("You are a", g2, "Person.")
+try:
+    birth_year = int(input("Enter your birth year : "))
+    
+    if birth_year > 2026:
+        print("⚠️ Future years are not allowed!")
+    else:
+        gen = get_generation(birth_year)
+        age = current_age(birth_year)
+        h_year = hundred_year(birth_year)
 
-elif 1981 <= birth_year <= 1996:
-    print("You are a", g3, "Person.")
+        print("-" * 35)
+        print(f"🌟 You belong to : {gen}")
+        print(f"📅 Your current age : {age} years")
+        print(f"💯 You will turn 100 in the year : {h_year}")
+        print("-" * 35)
 
-elif 1965 <= birth_year <= 1980:
-    print("You are a", g4, "Person.")
+except ValueError:
+    print("⚠️ Please enter a valid year (Number only)!")
 
-elif 1946 <= birth_year <= 1964:
-    print("You are a", g5, "Person.")
-
-elif 1928 <= birth_year <= 1945:
-    print("You are a", g6, "Person.")
-
-else:
-    print("You are a", g7, "Person.")
-
-print("You are", current_age(birth_year), "years old now.")
-
-print("In", hundred_year(birth_year), "you are 100 years old.")
+print("-------------Thank you-------------")
